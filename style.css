@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@700&display=swap');
 
 :root {
-
 	--clr-accent-200:#650000;
 	--clr-accent-600:#025601;
 
 	--clr-primary-100:#fff;
     --clr-secondary-400:#808080;
     --clr-accent-300:#161DD0;
+	--clr-accent-500:#0D88BC;
     
 	--ff-primary:'Roboto', sans-serif;
     --ff-accent:'Nunito', sans-serif;
 }
 
-/* Font Variables*/
+
 
 
 html, body, div, span, applet, object, iframe,
@@ -41,21 +41,131 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
+html, body {
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    height: 100vh;
+}
+
+
 body {
 	line-height: 1;
-	position: relative;
 	text-align: center;
 	color: var(--clr-primary-100);
 	background-color: var(--clr-secondary-400);
 	font-family: var(--ff-accent);
 }
 
+.header{
+	padding-top: 0.75em;
+}
 #headerContainer {
-	width: 80%;
 	margin: auto;
+	width: 75%;
 	padding: 0.5em;
-	font-size: 3.5em;
+	font-size: 3em;
 	border-radius: 4em;
 	font-family: var(--ff-primary);
 	background-color: var(--clr-accent-300);
 }
+
+
+.button {
+	border: none;
+	padding: 1em 2em;
+	margin: 1em;
+	width: 10em;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1em;
+	cursor: pointer;
+	color: var(--clr-primary-100);
+	background-color: var(--clr-accent-500);
+}
+
+
+.section-body{
+	display: grid;
+	gap:1em;
+}
+
+.cardContainer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	font-size: 2em;
+	width: 10em;
+	height: 14em;
+	border-radius: 1em;
+	background-color: var(--clr-accent-300);
+}
+
+.card{
+	display:grid;
+	height: 100%;
+	width: 100%;
+	border-radius: 1em;
+}
+
+.card >*{
+
+	align-self: center;
+	justify-self: center;
+}
+
+
+.toggle{
+	--width:3em;
+	--height:calc(var(--width) / 2 );
+	--border-radius: calc(var(--height) / 2);
+
+	display: inline-block;
+	cursor: pointer;
+}
+
+.toggle__input {
+	display: none;
+}
+
+.toggle__fill{
+	position: relative;
+	width: var(--width);
+	height: var(--height);
+	border-radius: var(--border-radius);
+	background: #dddddd;
+	transition: background 0.2s;
+}
+
+.toggle__input:checked ~ .toggle__fill{
+	background: #009578;
+}
+
+.toggle__fill::after{
+	content: "";
+	position: absolute;
+	top:0;
+	left: 0;
+	height: var(--height);
+	width: var(--height);
+	background: #ffffff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	border-radius: var(--border-radius);
+	transition: transform 0.2s;
+}
+
+
+.toggle__input:checked ~ .toggle__fill::after{
+	transform: translateX(var(--height));
+}
+
+
+footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color:var(--clr-accent-300);
+}
+
