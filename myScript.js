@@ -33,3 +33,17 @@ addBookToLibrary('Star Wars', 'George Lucas', '300', 'read')
 addBookToLibrary('Enders Game', 'JJ Abraham', '500', 'read')
 addBookToLibrary('Donkey Kong', 'Nintendo', '200', 'not read')
 addBookToLibrary('Fragon Ball Z', 'Vegeta', '100', 'not read')
+
+const showChecked = () =>{
+    console.log(document.getElementById("myToggle").checked)
+}
+
+document.getElementById("myToggle").addEventListener("click", showChecked);
+
+
+let tesT = document.querySelector(".card")
+let tesT1 = document.querySelector(".cardContainer")
+
+let clone = tesT1.cloneNode(true)
+
+tesT1.after(clone)
