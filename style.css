@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@700&display=swap');
 
 :root {
-	--clr-accent-200:#650000;
+	--clr-accent-200:#e70000;
 	--clr-accent-600:#025601;
 
 	--clr-primary-100:#fff;
@@ -60,6 +60,7 @@ body {
 
 .header{
 	padding-top: 0.75em;
+
 }
 #headerContainer {
 	margin: auto;
@@ -71,12 +72,99 @@ body {
 	background-color: var(--clr-accent-300);
 }
 
-
-.button {
-	border: none;
+/* Button used to open the New Item form -  */
+.addItem {
+	color: var(--clr-primary-100);
+	background-color: var(--clr-accent-500);
 	padding: 1em 2em;
 	margin: 1em;
+	border: none;
+	cursor: pointer;
 	width: 10em;
+	font-size: 1em;
+}
+  
+  /* The popup form - hidden by default */
+.form-popup {
+	display:none;
+	z-index: 9;
+	height: 100vh;
+}
+
+  /* The popup form - Responsive Center */
+@media only screen and (min-width:780px){
+	.form-popup {
+		display:flex;
+		justify-content: center;
+		z-index: 9;
+		height: 100vh;
+		width: 100%;
+	}
+	.form-container {
+		max-width: 100%;
+		padding: 1em;
+		height: 100%;
+		width: 50vw;
+		background-color: var(--clr-primary-100);
+	}
+}
+  
+.form-container > *{
+	font-size: 1.3em;
+	margin-bottom: 0.5em;
+	color: var(--clr-accent-300);
+}
+
+/* Add styles to the form container */
+.form-container {
+	max-width: 100%;
+	padding: 1em;
+	height: 100%;
+	background-color: var(--clr-primary-100);
+}
+  
+  /* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+	width: 90%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	border: none;
+	background: #f1f1f1;
+  }
+  
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+	background-color: #ddd;
+	outline: none;
+}
+  
+/* Set a style for the submit/login button */
+.form-container .btn {
+	background-color: var(--clr-accent-500);
+	color: white;
+	padding: 16px 20px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	margin-bottom:10px;
+	opacity: 0.8;
+}
+  
+  /* Add a red background color to the cancel button */
+.form-container .cancel {
+	background-color: var(--clr-accent-200);
+}
+  
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .addItem:hover {
+	opacity: 1;
+}
+
+.removeItem {
+	border: none;
+	width: 90%;
+	border-radius: 1em;
+	margin-bottom: 0.3em;
 	text-align: center;
 	text-decoration: none;
 	font-size: 1em;
@@ -84,7 +172,6 @@ body {
 	color: var(--clr-primary-100);
 	background-color: var(--clr-accent-500);
 }
-
 
 .section-body{
 	display: grid;
@@ -114,9 +201,19 @@ body {
 }
 
 .card >*{
-
 	align-self: center;
 	justify-self: center;
+}
+
+.switch-toggle{
+	display: flex;
+	align-self: center;
+	justify-content: space-evenly;
+	height: 2.3em;
+}
+
+p {
+	padding-bottom: 0.4em;
 }
 
 .switch {
@@ -126,22 +223,22 @@ body {
 	height: 1.5em;
   }
   
-  .switch input { 
+.switch input { 
 	opacity: 0;
 	width: 0;
 	height: 0;
-  }
+}
   
-  .slider {
+.slider {
 	position: absolute;
 	cursor: pointer;
 	inset: 0;
 	background-color: #ccc;
 	-webkit-transition: .4s;
 	transition: .4s;
-  }
+}
   
-  .slider:before {
+.slider:before {
 	position: absolute;
 	content: "";
 	height: 1.5em;
@@ -150,30 +247,30 @@ body {
 	background-color: white;
 	-webkit-transition: .4s;
 	transition: .4s;
-  }
+}
   
-  input:checked + .slider {
+input:checked + .slider {
 	background-color: #009578;
-  }
+}
   
-  input:focus + .slider {
+input:focus + .slider {
 	box-shadow: 0 0 1px #009578;
-  }
+}
   
-  input:checked + .slider:before {
+input:checked + .slider:before {
 	-webkit-transform: translateX(1.5em);
 	-ms-transform: translateX(1.5em);
 	transform: translateX(1.5em);
-  }
+}
   
-  /* Rounded sliders */
-  .slider.round {
+/* Rounded sliders */
+.slider.round {
 	border-radius: 1.5em;
-  }
+}
   
-  .slider.round:before {
+.slider.round:before {
 	border-radius: 50%;
-  }
+}
 
 
 footer{
