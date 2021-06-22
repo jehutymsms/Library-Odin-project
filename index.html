@@ -18,86 +18,64 @@
   </div>
 </header>
 
-<button class="button">Add Item</button>
+
+<button class="addItem" onclick="openForm()">Add Item</button>
+
+<div class="form-popup" id="myForm">
+  <form action="" class="form-container" id= "myform">
+
+    <label for="title"><b>Title</b></label>
+    <input type="text" placeholder="Enter Title" name="title" required>
+
+    <label for="author"><b>Author</b></label>
+    <input type="text" placeholder="Enter Author" name="author" required>
+
+    <label for="pages"><b>Number of Pages</b></label>
+    <input type="number" placeholder="Enter Pages" name="pages" required>
+
+    <p>Read</p>
+
+    <div class="switch-toggle">
+      <label class="switch"  for= "read" >
+        <input type="checkbox" name="read" id ="read" >
+        <span class="slider round"></span>
+        
+      </label>
+    </div>
+
+    <button type="submit" class="btn">Submit</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
 
 <div id = "section-body" class="section-body">
-  <div class="cardContainer">
-    <div class="card"> 
-
-      <p>Title</p>
-      <p>The Hobbit</p>
-
-      <p>Author</p>
-      <p>J.R.R. Tolkien</p>
-
-      <p>Pages</p>
-      <p>295</p>
-
-      <p>Read</p>
-
-      <div class="switch-toggle">
-        <form action="">
-          <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-          </label>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="cardContainer">
-    <div class="card"> 
-
-      <p>Title</p>
-      <p>The Hobbit</p>
-
-      <p>Author</p>
-      <p>J.R.R. Tolkien</p>
-
-      <p>Pages</p>
-      <p>295</p>
-
-      <p>Read</p>
-
-      <div class="switch-toggle">
-        <form action="">
-          <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-          </label>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="cardContainer">
-    <div class="card"> 
-
-      <p>Title</p>
-      <p>The Hobbit</p>
-
-      <p>Author</p>
-      <p>J.R.R. Tolkien</p>
-
-      <p>Pages</p>
-      <p>295</p>
-
-      <p>Read</p>
-
-      <div class="switch-toggle">
-        <form action="">
-          <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-          </label>
-        </form>
-      </div>
-    </div>
-  </div>
-
-
+    <!-- <div class="cardContainer">
+      <div class="card"> 
   
+        <p>Title</p>
+        <p>The Hobbit</p>
+  
+        <p>Author</p>
+        <p>J.R.R. Tolkien</p>
+  
+        <p>Pages</p>
+        <p>295</p>
+  
+        <p>Read</p>
+  
+        <div class="switch-toggle">
+          <form action="">
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </form>
+        </div>
+
+        <button class="removeItem" onclick="removeItem()">Remove Item</button>
+
+      </div>
+    </div> -->
 
 
   
