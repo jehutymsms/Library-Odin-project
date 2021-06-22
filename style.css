@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@700&display=swap');
 
 :root {
-	--clr-accent-200:#e70000;
+	--clr-accent-200:#8A0000;
 	--clr-accent-600:#025601;
 
 	--clr-primary-100:#fff;
     --clr-secondary-400:#808080;
     --clr-accent-300:#161DD0;
-	--clr-accent-500:#0D88BC;
+	--clr-accent-500:#063C51;
     
 	--ff-primary:'Roboto', sans-serif;
     --ff-accent:'Nunito', sans-serif;
@@ -84,6 +84,11 @@ body {
 	font-size: 1em;
 }
   
+.form-container{
+	font-size: 1.5em;
+}
+
+
   /* The popup form - hidden by default */
 .form-popup {
 	display:none;
@@ -110,16 +115,18 @@ body {
 }
   
 .form-container > *{
-	font-size: 1.3em;
-	margin-bottom: 0.5em;
 	color: var(--clr-accent-300);
+}
+
+.form-container > p{
+	margin-top: 0.5em;
 }
 
 /* Add styles to the form container */
 .form-container {
 	max-width: 100%;
 	padding: 1em;
-	height: 100%;
+	height: 70%;
 	background-color: var(--clr-primary-100);
 }
   
@@ -128,6 +135,7 @@ body {
 	width: 90%;
 	padding: 15px;
 	margin: 5px 0 22px 0;
+	font-size: 0.9em;
 	border: none;
 	background: #f1f1f1;
   }
@@ -138,7 +146,7 @@ body {
 	outline: none;
 }
   
-/* Set a style for the submit/login button */
+/* Set a style for the submit button */
 .form-container .btn {
 	background-color: var(--clr-accent-500);
 	color: white;
@@ -146,6 +154,7 @@ body {
 	border: none;
 	cursor: pointer;
 	width: 100%;
+	font-size: 0.9em;
 	margin-bottom:10px;
 	opacity: 0.8;
 }
