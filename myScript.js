@@ -115,6 +115,8 @@ const newCard = (title, author, pages, label, read = false) =>{
     let checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.id = label;
+    checkBox.name = label;
+    checkBox.setAttribute('aria-label', 'Toggle Read');
     listener(checkBox);
     if(read == 'read'){
         checkBox.checked = true;

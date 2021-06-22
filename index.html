@@ -24,22 +24,24 @@
 <div class="form-popup" id="myForm">
   <form action="" class="form-container" id= "myform">
 
-    <label for="title"><b>Title</b></label>
-    <input type="text" placeholder="Enter Title" name="title" required>
+    <label for="title"><b>Title</b>
+      <input type="text" placeholder="Enter Title" name="title" id="title" required>
+    </label>
 
-    <label for="author"><b>Author</b></label>
-    <input type="text" placeholder="Enter Author" name="author" required>
+    <label for="author"><b>Author</b>
+      <input type="text" placeholder="Enter Author" name="author" id="author" required>
+    </label>
 
-    <label for="pages"><b>Number of Pages</b></label>
-    <input type="number" placeholder="Enter Pages" name="pages" required>
+    <label for="pages"><b>Number of Pages</b>
+      <input type="number" placeholder="Enter Pages" name="pages" id="pages" required>
+    </label>
 
     <p>Read</p>
 
     <div class="switch-toggle">
       <label class="switch"  for= "read" >
-        <input type="checkbox" name="read" id ="read" >
+        <input type="checkbox" name="read" id ="read" aria-label="Toggle Read" >
         <span class="slider round"></span>
-        
       </label>
     </div>
 
@@ -49,37 +51,10 @@
 </div>
 
 <div id = "section-body" class="section-body">
-    <!-- <div class="cardContainer">
-      <div class="card"> 
   
-        <p>Title</p>
-        <p>The Hobbit</p>
-  
-        <p>Author</p>
-        <p>J.R.R. Tolkien</p>
-  
-        <p>Pages</p>
-        <p>295</p>
-  
-        <p>Read</p>
-  
-        <div class="switch-toggle">
-          <form action="">
-            <label class="switch">
-              <input type="checkbox">
-              <span class="slider round"></span>
-            </label>
-          </form>
-        </div>
 
-        <button class="removeItem" onclick="removeItem()">Remove Item</button>
-
-      </div>
-    </div> -->
-
-
-  
 </div>
+
 <div class="footerContainer">
   <footer>
     <h2>Made by Andrew Humphries</h2>
