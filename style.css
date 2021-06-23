@@ -13,9 +13,6 @@
     --ff-accent:'Nunito', sans-serif;
 }
 
-
-
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -88,16 +85,15 @@ body {
 	font-size: 1.5em;
 }
 
-
   /* The popup form - hidden by default */
 .form-popup {
-	display:none;
+	display:;
 	z-index: 9;
 	height: 100vh;
 }
 
   /* The popup form - Responsive Center */
-@media only screen and (min-width:780px){
+@media only screen and (min-width:750px){
 	.form-popup {
 		display:flex;
 		justify-content: center;
@@ -106,10 +102,9 @@ body {
 		width: 100%;
 	}
 	.form-container {
-		max-width: 100%;
 		padding: 1em;
 		height: 100%;
-		width: 50vw;
+		width: 40%;
 		background-color: var(--clr-primary-100);
 	}
 }
@@ -281,11 +276,9 @@ input:checked + .slider:before {
 	border-radius: 50%;
 }
 
-
 footer{
 	position: fixed;
 	bottom: 0;
 	width: 100%;
 	background-color:var(--clr-accent-300);
 }
-
