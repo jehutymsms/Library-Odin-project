@@ -1,10 +1,6 @@
 // Variable Storage
 let myLibrary = new Array();
-
-
 let body = document.querySelector('#section-body');
-
-
 
 // Book Object Main
 function Book (title, author, pages, read, label){
@@ -43,7 +39,7 @@ function openForm() {
     document.getElementById("myForm").style.display = "flex";
     document.getElementById("myForm").scrollIntoView({behavior: 'smooth'})
 
-  }
+}
   
 // Close button remove form
 function closeForm() {
@@ -55,7 +51,9 @@ function closeForm() {
 const removeI = (any) =>{
   any.addEventListener('click' , (e) => {
     e.currentTarget.parentElement.parentElement.remove();
+    updateLibrary();
     })
+    
 }
 
 
