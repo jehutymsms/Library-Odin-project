@@ -3,63 +3,64 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library Application</title>
-
+  <meta name="description" content="Library-Project">
+  <meta name="author" content="Andrew">
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header class="header">
-  <div id = "headerContainer">
-    <h1>Library App</h1>
-  </div>
-</header>
-
-
-<button class="addItem" onclick="openForm()">Add Item</button>
-
-<div class="form-popup" id="myForm">
-  <form action="" class="form-container" id= "myform">
-
-    <label for="title"><b>Title</b>
-      <input type="text" placeholder="Enter Title" name="title" id="title" required>
-    </label>
-
-    <label for="author"><b>Author</b>
-      <input type="text" placeholder="Enter Author" name="author" id="author" required>
-    </label>
-
-    <label for="pages"><b>Number of Pages</b>
-      <input type="number" placeholder="Enter Pages" name="pages" id="pages" required>
-    </label>
-
-    <p>Read</p>
-
-    <div class="switch-toggle">
-      <label class="switch"  for= "read" >
-        <input type="checkbox" name="read" id ="read" aria-label="Toggle Read" >
-        <span class="slider round"></span>
-      </label>
+  <header class="header">
+    <div id="headerContainer">
+      <h1>Library App</h1>
     </div>
+  </header>
 
-    <button type="submit" class="btn">Submit</button>
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
-</div>
 
-<div id = "section-body" class="section-body">
-  
+  <button class="addItem" id="addItem" onclick="openForm()">Add Item</button>
 
-</div>
+  <div class="form-popup" id="myForm">
+    <form action="" class="form-container" id="myform">
 
-<div class="footerContainer">
-  <footer>
-    <h2>Made by Andrew Humphries</h2>
-  </footer>
-</div>
+      <label for="title"><b>Title</b>
+        <input type="text" placeholder="Enter Title" name="title" id="title" required>
+      </label>
+
+      <label for="author"><b>Author</b>
+        <input type="text" placeholder="Enter Author" name="author" id="author" required>
+      </label>
+
+      <label for="pages"><b>Number of Pages</b>
+        <input type="number" placeholder="Enter Pages" name="pages" id="pages" required>
+      </label>
+
+      <p>Read</p>
+
+      <div class="switch-toggle">
+        <label class="switch" for="read">
+          <input type="checkbox" name="read" id="read" aria-label="Toggle Read">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn" id="submit">Submit</button>
+      <button type="button" class="btn cancel" id="close" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+  <div id="section-body" class="section-body">
+
+
+  </div>
+
+  <div class="footerContainer">
+    <footer>
+      <h2>Made by Andrew Humphries</h2>
+    </footer>
+  </div>
   <script src="myScript.js"></script>
 </body>
+
 </html>
