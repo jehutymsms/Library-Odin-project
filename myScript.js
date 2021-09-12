@@ -165,15 +165,17 @@ const addItemButton = (() => {
     //Cache Dom Elements
     const cacheDom = (()=>{
       let myForm = document.getElementById('myForm'),
+      formData = document.getElementById('myform'),
       addItemButton = document.getElementById('addItem'),
       title = document.getElementById('title'),
       author = document.getElementById('author'),
       pages = document.getElementById('pages'),
       read = document.getElementById('read'),
+      section_body = document.getElementById('section-body'),
       submitButton = document.getElementById('submit'),
       closeButton = document.getElementById('close')
 
-      return{myForm:myForm,addItemButton:addItemButton,title:title,author:author,pages:pages,read:read,submitButton:submitButton,closeButton:closeButton}
+      return{myForm:myForm,formData:formData,addItemButton:addItemButton,title:title,author:author,pages:pages,read:read,section_body:section_body,submitButton:submitButton,closeButton:closeButton}
     })()
 
     //Variable Storage
@@ -182,7 +184,8 @@ const addItemButton = (() => {
     //Bind events
     const bindEvents = () =>{
       cacheDom.addItemButton.addEventListener('click', render.showform);
-      cacheDom.closeButton.addEventListener('click', render.hideForm)
+      cacheDom.formData.addEventListener('submit', newBook)
+      cacheDom.closeButton.addEventListener('click', render.hideForm);
     }
 
     //Function List
@@ -197,35 +200,34 @@ const addItemButton = (() => {
     }
 
     //Function for new card
-    const newCard = (title, author, pages, label, read = false) =>{
+    const newCard = (book) =>{
       let containerLabel = "Card" + myLibrary2.length,
-      cardContainer = newElement('div', 'cardContainer', containerLabel),
-      card = newElement('div', 'card'),
-      titleHead = newElement('p', htmlString='Title'),
-      titleHTML = newElement('p', htmlString= title),
-      authorHead = newElement('p', htmlString='Author'),
-      authorHTML = newElement('p', htmlString= author),
-      pagesHead = newElement('p', htmlString='Pages'),
-      pagesHTML = newElement('p', htmlString= pages),
-      readHead = newElement('p', htmlString='Read'),
-      switchHead = newElement('div','switch-toggle'),
-      sWitch = newElement('label', 'switch').htmlFor= label,
-      checkBox = newElement('input',id= label).type='checkbox'.name=label,
-      slider = newElement('span','slider round'),
-      buttonRemove = newElement('button','removeItem',htmlString='Remove Item');
+      cardContainer = newElement({tag:'div', cLass:'cardContainer',id:containerLabel}),
+      card = newElement({tag:'div', cLass:'card'}),
+      titleHead = newElement({tag:'p',htmlString:'Title'}),
+      titleHTML = newElement({tag:'p',htmlString:book.title}),
+      authorHead = newElement({tag:'p',htmlString:'Author'}),
+      authorHTML = newElement({tag:'p',htmlString:book.author}),
+      pagesHead = newElement({tag:'p',htmlString:'Pages'}),
+      pagesHTML = newElement({tag:'p',htmlString:book.pages}),
+      readHead = newElement({tag:'p',htmlString:'Read'}),
+      switchHead = newElement({tag:'div',cLass:'switch-toggle'}),
+      sWitch = newElement({tag:'label',cLass:'switch',htmlFor:book.label}),
+      checkBox = newElement({tag:'input',id:book.label,name:book.label,type:'checkbox',attribute:['aria-label', 'Toggle Read']}),
+      slider = newElement({tag:'span',cLass:'slider round'}),
+      buttonRemove = newElement({tag:'button',cLass:'removeItem',htmlString:'Remove Item'});
 
       //buttonRemove Eventlistener HERE
       listener(buttonRemove, 'click',removeItem);
-      if (read == 'read') {
+      if (book.read == 'read') {
         checkBox.checked = true;
       } else {
         checkBox.checked = false;
       };
 
-      document.getElementById(label).setAttribute('aria-label', 'Toggle Read')
+      // document.getElementById(label).setAttribute('aria-label', 'Toggle Read')
 
       // Read Switch Element
-      console.log(titleHead)
       switchHead.appendChild(sWitch);
       sWitch.appendChild(checkBox);
       sWitch.appendChild(slider);
@@ -247,11 +249,15 @@ const addItemButton = (() => {
     }
 
     //DOM Element Creation
-    const newElement = (tag,cLass='',id='',htmlString='')=>{
-      let element = document.createElement(tag);
-      element.classList = cLass;
-      element.id = id;
-      element.innerHTML = htmlString;
+    const newElement = (item)=>{
+      let element = document.createElement(item.tag);
+      if(item.cLass){element.classList = item.cLass;}
+      if(item.id){element.id = item.id;}
+      if(item.htmlString){element.innerHTML = item.htmlString;}
+      if(item.htmlFor){element.htmlFor= item.htmlFor;}
+      if(item.name){element.name= item.name;}
+      if(item.type){element.type= item.type;}
+      if(item.attribute){element.setAttribute(item.attribute[0],item.attribute[1]);}
       return element;
     }
     
@@ -260,12 +266,26 @@ const addItemButton = (() => {
       const item = myLibrary2.findIndex(x => x.title === book);
       myLibrary2.splice(item,1)
     }
+    
+    //New Book
+    const newBook = (event)=>{
+      let Data = Object.fromEntries(new FormData(cacheDom.formData).entries());
+        if(Data.read == undefined) {
+          let book = new Book(Data.title, Data.author, parseInt(Data.pages), 'not read');
+          book.addBookToLibrary(myLibrary2);
+        }else {
+          let book = new Book(Data.title, Data.author, Data.pages, 'read');
+          book.addBookToLibrary(myLibrary2);
+        }
+        event.preventDefault();
+        render.hideForm();
+        render.clearForm();
+    }
 
     //Book Class
-
     class Book {
 
-      constructor(title,author,pages,read){
+      constructor(title,author,pages,read ='not read'){
         this.title = title;
         this.author = author;
         this.pages = pages;
@@ -286,8 +306,6 @@ const addItemButton = (() => {
 
     }
 
-    
-
     //Render DOM
     const render = (()=>{
       const showForm = ()=>{
@@ -296,17 +314,16 @@ const addItemButton = (() => {
       } 
       const hideForm = ()=>{
         cacheDom.myForm.style.display = 'none';
+      
       }
       const clearForm = ()=>{
-        cacheDom.myForm.reset()
+        cacheDom.formData.reset()
+      }
+      const addToDom = (item) =>{
+        cacheDom.section_body.appendChild(item);
       }
       
-      return {showform:showForm,hideForm:hideForm,clearForm:clearForm}
+      return {showform:showForm,hideForm:hideForm,clearForm:clearForm,addToDom:addToDom}
     })()
     bindEvents()
-    let andrew = new Book('Hello', 'Andrew', 200, 'read')
-    andrew.addBookToLibrary(myLibrary2)
-    console.log(myLibrary2)
-    console.log(myLibrary2[0].title)
-    newCard(myLibrary2[0].title, myLibrary2[0].author, myLibrary2[0].pages, myLibrary2[0].bookLabel, myLibrary2[0].read)
   })()
