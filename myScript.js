@@ -72,8 +72,6 @@
 // const listener = (any) => {
 //   any.addEventListener('click', () => {
 //     showChecked(any)
-
-
 //   })
 // }
 
@@ -179,7 +177,7 @@ const addItemButton = (() => {
     })()
 
     //Variable Storage
-    let myLibrary2 = [];
+    let myLibrary = [];
 
     //Bind events
     const bindEvents = () =>{
@@ -190,9 +188,40 @@ const addItemButton = (() => {
 
     //Function List
 
+    //Getting Parent element
+    function getParentNode(element, level=1) { 
+      while(level-- > 0) {
+          element = element.parentNode;
+          if(!element) {
+              return null; 
+          }
+      }
+      return element;
+    }
+    // For Toggle Button Function
+    const updateReadStatus = (readStatus) => {
+      if(readStatus.target.checked == true){
+        libraryReadUpdate(getParentNode(readStatus.target,3).firstChild.nextElementSibling.innerHTML,"read")
+      }else{
+        libraryReadUpdate(getParentNode(readStatus.target,3).firstChild.nextElementSibling.innerHTML,"not read")
+      }
+    }
+    //Library Read status update
+    const libraryReadUpdate = (title,status) =>{
+      const item = myLibrary.findIndex(x => x.title === title);
+      myLibrary[item].read = status;
+    }
+
+    //Display Library
+    const libraryDisplay = () =>{
+      render.clearSection_Body();
+      myLibrary.map(newCard).map(render.addToDom)
+    }
+
     //Remove Item from Library
     const removeItem = (item)=>{
-      item.parentElement.parentElement.remove();
+      render.removeCard(item.target.parentElement.parentElement);
+      removeBook(item.target.parentElement.firstChild.nextElementSibling.innerHTML)
     }
     //Toggle Button Event Listener
     const listener = (element, listener, task) =>{
@@ -201,7 +230,7 @@ const addItemButton = (() => {
 
     //Function for new card
     const newCard = (book) =>{
-      let containerLabel = "Card" + myLibrary2.length,
+      let containerLabel = "Card" + myLibrary.findIndex(x => x.title === book.title),
       cardContainer = newElement({tag:'div', cLass:'cardContainer',id:containerLabel}),
       card = newElement({tag:'div', cLass:'card'}),
       titleHead = newElement({tag:'p',htmlString:'Title'}),
@@ -224,8 +253,8 @@ const addItemButton = (() => {
       } else {
         checkBox.checked = false;
       };
-
-      // document.getElementById(label).setAttribute('aria-label', 'Toggle Read')
+      //Updating Read status in Library based on slider
+      listener(checkBox,'click',updateReadStatus)
 
       // Read Switch Element
       switchHead.appendChild(sWitch);
@@ -263,8 +292,8 @@ const addItemButton = (() => {
     
     //Remove Item from Library
     const removeBook = (book)=>{
-      const item = myLibrary2.findIndex(x => x.title === book);
-      myLibrary2.splice(item,1)
+      const item = myLibrary.findIndex(x => x.title === book);
+      myLibrary.splice(item,1)
     }
     
     //New Book
@@ -272,10 +301,12 @@ const addItemButton = (() => {
       let Data = Object.fromEntries(new FormData(cacheDom.formData).entries());
         if(Data.read == undefined) {
           let book = new Book(Data.title, Data.author, parseInt(Data.pages), 'not read');
-          book.addBookToLibrary(myLibrary2);
+          book.addBookToLibrary(myLibrary);
+          libraryDisplay()
         }else {
           let book = new Book(Data.title, Data.author, Data.pages, 'read');
-          book.addBookToLibrary(myLibrary2);
+          book.addBookToLibrary(myLibrary);
+          libraryDisplay()
         }
         event.preventDefault();
         render.hideForm();
@@ -293,7 +324,7 @@ const addItemButton = (() => {
       }
 
       addBookToLibrary(array){
-        let label = "Book" + myLibrary2.length
+        let label = "Book" + myLibrary.length
         let book = {
           title: this.title,
           author: this.author,
@@ -322,8 +353,16 @@ const addItemButton = (() => {
       const addToDom = (item) =>{
         cacheDom.section_body.appendChild(item);
       }
+      const clearSection_Body = () =>{
+        while(cacheDom.section_body.firstChild){
+          cacheDom.section_body.removeChild(cacheDom.section_body.lastChild);
+        }
+      }
+      const removeCard = (card) =>{
+        card.remove()
+      }
       
-      return {showform:showForm,hideForm:hideForm,clearForm:clearForm,addToDom:addToDom}
+      return {showform:showForm,hideForm:hideForm,clearForm:clearForm,addToDom:addToDom,clearSection_Body:clearSection_Body,removeCard:removeCard}
     })()
     bindEvents()
   })()
