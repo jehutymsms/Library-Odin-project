@@ -23,7 +23,8 @@ This is a solution to the [Library App](https://www.theodinproject.com/paths/ful
 Users should be able to:
 
 - View/Add books into the library to be displayed on cards
-- Storing books in local storage
+- Updated as of 9/13/21 with Modular JS
+- Updated using Class instead of a factory function for adding books to library
 
 ### Links
 
@@ -39,10 +40,11 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - Figma
+- Modular JS
 
 ### What I learned
 
-
+I learned more about modular JS and about making functions do only 1 thing thus making it easier to find issues that occur.
 
 
 ### Continued development
