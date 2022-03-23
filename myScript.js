@@ -132,8 +132,7 @@ const addItemButton = (() => {
     
     //Remove Item from Library
     const removeBook = (book)=>{
-      const item = myLibrary.findIndex(x => x.title === book);
-      myLibrary.splice(item,1)
+      myLibrary.splice(myLibrary.findIndex(x => x.title === book),1)
     }
     
     //New Book
@@ -172,7 +171,6 @@ const addItemButton = (() => {
           read: this.read,
           bookLabel: label
         }
-        console.log(array)
         array.push(book)
       }
 
